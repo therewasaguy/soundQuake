@@ -118,10 +118,10 @@ var Audio = (function () {
      */
     me.playSample = function (ranNum, x, y, mag) {
 
-        //var gainNode = context.createGainNode();
+        //var gainNode = context.createGain();
 
-        var dryGainNode = context.createGainNode(),
-            wetGainNode = context.createGainNode(),
+        var dryGainNode = context.createGain(),
+            wetGainNode = context.createGain(),
             filter = context.createBiquadFilter(),
             source = context.createBufferSource(),
             panner = context.createPanner(),
@@ -147,7 +147,7 @@ var Audio = (function () {
 
         panner.setPosition(x, y, 0);
 
-        source.noteOn(0);
+        source.start(0);
 
     };
 
@@ -158,7 +158,9 @@ var Audio = (function () {
      *
      */
     me.init = function () {
-
+      	if (window.hasOwnProperty('AudioContext') {
+    		window.webkitAudioContext = AudioContext;
+        }
         // Create webkitAudioContext, if possible.
         try {
             context = new webkitAudioContext();
