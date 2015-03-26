@@ -158,7 +158,7 @@ var Audio = (function () {
      *
      */
     me.init = function () {
-      	if (window.hasOwnProperty('AudioContext') {
+      	if (window.hasOwnProperty('AudioContext') ) {
     		window.webkitAudioContext = AudioContext;
         }
         // Create webkitAudioContext, if possible.
